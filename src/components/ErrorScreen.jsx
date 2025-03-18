@@ -2,7 +2,7 @@ import React from 'react';
 
 const ErrorScreen = ({ message, onRetry, onRestart, onOfflineMode }) => {
   return (
-    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 flex flex-col items-center justify-center absolute inset-0">
+    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 flex flex-col items-center justify-center fixed inset-0">
       {/* 배경 애니메이션 요소 */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>

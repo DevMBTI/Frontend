@@ -173,24 +173,27 @@ const StatsScreen = ({ onBack }) => {
   
   if (loading) {
     return (
-      <div className="h-screen w-screen overflow-auto bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 absolute inset-0">
+      <div className="scrollable-screen bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10">
         {/* 배경 애니메이션 요소 */}
-        <div className="fixed inset-0 z-0 overflow-hidden">
-          <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-          <div className="absolute top-1/3 left-1/3 w-[150vw] h-[150vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-1/4 right-1/3 w-[150vw] h-[150vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-          <div className="absolute -bottom-1/3 left-1/4 w-[150vw] h-[150vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+        <div className="background-layer">
+          <div className="absolute top-1/4 right-1/4 w-[120vw] h-[120vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div className="absolute top-1/3 left-1/3 w-[120vw] h-[120vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-1/4 right-1/3 w-[120vw] h-[120vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+          <div className="absolute -bottom-1/3 left-1/4 w-[120vw] h-[120vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+          
+          {/* 추가 배경 레이어 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5"></div>
         </div>
         
-        {/* 추가 배경 레이어 */}
-        <div className="fixed inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 z-0"></div>
-        
-        <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10">
-          {renderHeader()}
-          
-          <div className="flex flex-col items-center justify-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-600 mb-6"></div>
-            <p className="text-gray-700 font-medium text-lg mb-6">통계를 불러오는 중입니다...</p>
+        {/* 컨텐츠 영역 */}
+        <div className="scrollable-content">
+          <div className="max-w-4xl mx-auto py-8 px-3 lg:px-6 w-full pb-20">
+            {renderHeader()}
+            
+            <div className="flex flex-col items-center justify-center min-h-[400px]">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-600 mb-6"></div>
+              <p className="text-gray-700 font-medium text-lg mb-6">통계를 불러오는 중입니다...</p>
+            </div>
           </div>
         </div>
       </div>
@@ -199,53 +202,56 @@ const StatsScreen = ({ onBack }) => {
   
   if (error) {
     return (
-      <div className="h-screen w-screen overflow-auto bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 absolute inset-0">
+      <div className="scrollable-screen bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10">
         {/* 배경 애니메이션 요소 */}
-        <div className="fixed inset-0 z-0 overflow-hidden">
-          <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-          <div className="absolute top-1/3 left-1/3 w-[150vw] h-[150vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-1/4 right-1/3 w-[150vw] h-[150vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-          <div className="absolute -bottom-1/3 left-1/4 w-[150vw] h-[150vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+        <div className="background-layer">
+          <div className="absolute top-1/4 right-1/4 w-[120vw] h-[120vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div className="absolute top-1/3 left-1/3 w-[120vw] h-[120vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-1/4 right-1/3 w-[120vw] h-[120vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+          <div className="absolute -bottom-1/3 left-1/4 w-[120vw] h-[120vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+          
+          {/* 추가 배경 레이어 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5"></div>
         </div>
         
-        {/* 추가 배경 레이어 */}
-        <div className="fixed inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 z-0"></div>
-        
-        <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10">
-          {renderHeader()}
-          
-          <div className="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-lg shadow-sm mb-6">
-            <div className="flex items-center mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <h2 className="text-xl font-semibold text-red-800">통계를 불러올 수 없습니다</h2>
-            </div>
+        {/* 컨텐츠 영역 */}
+        <div className="scrollable-content">
+          <div className="max-w-4xl mx-auto py-8 px-3 lg:px-6 w-full pb-20">
+            {renderHeader()}
             
-            <p className="text-red-700 mb-6 bg-red-100 p-3 rounded-md border border-red-200">
-              {error}
-            </p>
-            
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={switchToDummyData}
-                className="flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 transition-colors shadow-sm"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clipRule="evenodd" />
+            <div className="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-lg shadow-sm mb-6">
+              <div className="flex items-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                샘플 데이터로 보기
-              </button>
+                <h2 className="text-xl font-semibold text-red-800">통계를 불러올 수 없습니다</h2>
+              </div>
               
-              <button
-                onClick={onBack}
-                className="flex items-center justify-center px-6 py-3 text-sm font-medium text-indigo-600 bg-white border border-indigo-300 rounded-md hover:bg-indigo-50 transition-colors shadow-sm"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-                </svg>
-                테스트로 돌아가기
-              </button>
+              <p className="text-red-700 mb-6 bg-red-100 p-3 rounded-md border border-red-200">
+                {error}
+              </p>
+              
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={switchToDummyData}
+                  className="flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 transition-colors shadow-sm"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clipRule="evenodd" />
+                  </svg>
+                  샘플 데이터로 보기
+                </button>
+                
+                <button
+                  onClick={onBack}
+                  className="flex items-center justify-center px-6 py-3 text-sm font-medium text-indigo-600 bg-white border border-indigo-300 rounded-md hover:bg-indigo-50 transition-colors shadow-sm"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                  </svg>
+                  테스트로 돌아가기
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -421,124 +427,127 @@ const StatsScreen = ({ onBack }) => {
   );
   
   return (
-    <div className="h-screen w-screen overflow-auto bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 absolute inset-0">
+    <div className="scrollable-screen bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10">
       {/* 배경 애니메이션 요소 */}
-      <div className="fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-1/3 left-1/3 w-[150vw] h-[150vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-1/4 right-1/3 w-[150vw] h-[150vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-        <div className="absolute -bottom-1/3 left-1/4 w-[150vw] h-[150vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+      <div className="background-layer">
+        <div className="absolute top-1/4 right-1/4 w-[120vw] h-[120vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-1/3 left-1/3 w-[120vw] h-[120vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-1/4 right-1/3 w-[120vw] h-[120vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute -bottom-1/3 left-1/4 w-[120vw] h-[120vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+        
+        {/* 추가 배경 레이어 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5"></div>
       </div>
       
-      {/* 추가 배경 레이어 */}
-      <div className="fixed inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 z-0"></div>
-      
-      <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10">
-        {renderHeader()}
-        
-        <div className="mb-4 flex items-center">
-          <p className="text-gray-600 italic">
-            {useDummyData && <span className="text-amber-600 font-medium">현재 샘플 데이터를 표시 중입니다.</span>}
-          </p>
-        </div>
-        
-        {/* 기간 선택 및 요약 정보 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {/* 기간 선택 */}
-          <div className="bg-white/90 backdrop-blur-md shadow-xl rounded-lg p-5 border border-white/70">
-            <h3 className="text-lg font-medium text-gray-800 mb-3">조회 기간 설정</h3>
-            <select 
-              value={timePeriod} 
-              onChange={(e) => setTimePeriod(Number(e.target.value))}
-              className="w-full pl-3 pr-10 py-2.5 text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
-            >
-              <option value={7}>최근 7일</option>
-              <option value={30}>최근 30일</option>
-              <option value={90}>최근 3개월</option>
-            </select>
+      {/* 컨텐츠 영역 */}
+      <div className="scrollable-content">
+        <div className="max-w-4xl mx-auto py-8 px-3 lg:px-6 w-full pb-20">
+          {renderHeader()}
+          
+          <div className="mb-3 flex items-center">
+            <p className="text-gray-600 italic text-sm">
+              {useDummyData && <span className="text-amber-600 font-medium">현재 샘플 데이터를 표시 중입니다.</span>}
+            </p>
           </div>
           
-          {/* 총 참여자 */}
-          <div className="bg-white/90 backdrop-blur-md shadow-xl rounded-lg p-5 border border-white/70">
-            <h3 className="text-sm font-medium text-gray-500 mb-1">총 테스트 참여자</h3>
-            <div className="flex items-baseline">
-              <span className="text-3xl font-extrabold text-gray-900">{stats.totalCount}</span>
-              <span className="ml-2 text-sm font-medium text-gray-500">명</span>
+          {/* 기간 선택 및 요약 정보 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            {/* 기간 선택 */}
+            <div className="bg-white/90 backdrop-blur-md shadow-lg rounded-lg p-4 border border-white/70">
+              <h3 className="text-base font-medium text-gray-800 mb-2">조회 기간 설정</h3>
+              <select 
+                value={timePeriod} 
+                onChange={(e) => setTimePeriod(Number(e.target.value))}
+                className="w-full pl-3 pr-10 py-2 text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
+              >
+                <option value={7}>최근 7일</option>
+                <option value={30}>최근 30일</option>
+                <option value={90}>최근 3개월</option>
+              </select>
             </div>
-            <div className="mt-4 flex items-center text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-              </svg>
-              <span className="text-gray-600">전체 기간</span>
+            
+            {/* 총 참여자 */}
+            <div className="bg-white/90 backdrop-blur-md shadow-lg rounded-lg p-4 border border-white/70">
+              <h3 className="text-xs font-medium text-gray-500 mb-1">총 테스트 참여자</h3>
+              <div className="flex items-baseline">
+                <span className="text-2xl font-extrabold text-gray-900">{stats.totalCount}</span>
+                <span className="ml-2 text-xs font-medium text-gray-500">명</span>
+              </div>
+              <div className="mt-2 flex items-center text-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+                <span className="text-gray-600">전체 기간</span>
+              </div>
+            </div>
+            
+            {/* 선택 기간 참여자 */}
+            <div className="bg-white/90 backdrop-blur-md shadow-lg rounded-lg p-4 border border-white/70">
+              <h3 className="text-xs font-medium text-gray-500 mb-1">선택 기간 참여자</h3>
+              <div className="flex items-baseline">
+                <span className="text-2xl font-extrabold text-gray-900">{stats.count}</span>
+                <span className="ml-2 text-xs font-medium text-gray-500">명</span>
+              </div>
+              <div className="mt-2 flex items-center text-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                </svg>
+                <span className="text-gray-600">최근 {stats.periodDays}일</span>
+              </div>
             </div>
           </div>
           
-          {/* 선택 기간 참여자 */}
-          <div className="bg-white/90 backdrop-blur-md shadow-xl rounded-lg p-5 border border-white/70">
-            <h3 className="text-sm font-medium text-gray-500 mb-1">선택 기간 참여자</h3>
-            <div className="flex items-baseline">
-              <span className="text-3xl font-extrabold text-gray-900">{stats.count}</span>
-              <span className="ml-2 text-sm font-medium text-gray-500">명</span>
-            </div>
-            <div className="mt-4 flex items-center text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-              </svg>
-              <span className="text-gray-600">최근 {stats.periodDays}일</span>
-            </div>
-          </div>
-        </div>
-        
-        {/* 탭 메뉴 */}
-        {renderTabs()}
-        
-        {/* 탭 콘텐츠 */}
-        <div className="mt-6">
-          {activeTab === 'paths' && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {renderPathDistribution()}
-              
-              {/* 평균 점수 */}
-              {stats.averageScores && (
-                <div className="bg-white shadow rounded-lg p-6 border border-gray-100">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-100">평균 점수</h3>
-                  <div className="space-y-6">
-                    {Object.entries(stats.averageScores).map(([key, value]) => {
-                      const displayLabel = pathLabels[key] || key;
-                      const color = COLOR_MAP[key] || 'rgb(107, 114, 128)'; // gray-500 as fallback
-                      
-                      return (
-                        <div key={key} className="w-full">
-                          <div className="flex justify-between items-center mb-2">
-                            <div className="flex items-center">
-                              <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: color }}></div>
-                              <span className="text-gray-800 font-medium">{displayLabel}</span>
+          {/* 탭 메뉴 */}
+          {renderTabs()}
+          
+          {/* 탭 콘텐츠 */}
+          <div className="mt-6">
+            {activeTab === 'paths' && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {renderPathDistribution()}
+                
+                {/* 평균 점수 */}
+                {stats.averageScores && (
+                  <div className="bg-white shadow rounded-lg p-6 border border-gray-100">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-100">평균 점수</h3>
+                    <div className="space-y-6">
+                      {Object.entries(stats.averageScores).map(([key, value]) => {
+                        const displayLabel = pathLabels[key] || key;
+                        const color = COLOR_MAP[key] || 'rgb(107, 114, 128)'; // gray-500 as fallback
+                        
+                        return (
+                          <div key={key} className="w-full">
+                            <div className="flex justify-between items-center mb-2">
+                              <div className="flex items-center">
+                                <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: color }}></div>
+                                <span className="text-gray-800 font-medium">{displayLabel}</span>
+                              </div>
+                              <div className="flex items-center">
+                                <span className="text-gray-700 font-medium">{value}점</span>
+                              </div>
                             </div>
-                            <div className="flex items-center">
-                              <span className="text-gray-700 font-medium">{value}점</span>
+                            <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                              <div 
+                                className="h-full rounded-full transition-all duration-500"
+                                style={{ 
+                                  width: `${(value / 100) * 100}%`,
+                                  backgroundColor: color
+                                }}
+                              ></div>
                             </div>
                           </div>
-                          <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-                            <div 
-                              className="h-full rounded-full transition-all duration-500"
-                              style={{ 
-                                width: `${(value / 100) * 100}%`,
-                                backgroundColor: color
-                              }}
-                            ></div>
-                          </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          )}
-          
-          {activeTab === 'time' && renderTimeDistribution()}
-          
-          {activeTab === 'demographic' && renderDemographics()}
+                )}
+              </div>
+            )}
+            
+            {activeTab === 'time' && renderTimeDistribution()}
+            
+            {activeTab === 'demographic' && renderDemographics()}
+          </div>
         </div>
       </div>
     </div>
