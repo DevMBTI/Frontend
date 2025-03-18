@@ -95,9 +95,6 @@ function App() {
     return simulateAIAnalysis(answersData);
   }, []);
 
-  // 강제 로컬 폴백 활성화
-  const USE_LOCAL_FALLBACK = true;
-
   // 질문에 답변 처리
   const handleAnswer = useCallback((selectedOption) => {
     // 현재 질문에 대한 답변 저장
@@ -114,7 +111,10 @@ function App() {
       setLoading(true);
       setError(null);
       
-      // 임시 솔루션: 로컬 폴백 사용
+      // API 호출을 기본 옵션으로 설정
+      const USE_LOCAL_FALLBACK = false; // 로컬 폴백 비활성화
+      
+      // 오프라인 또는 폴백 설정된 경우에만 로컬 분석 사용
       if (USE_LOCAL_FALLBACK || isOfflineMode) {
         console.log('로컬 결과 분석 사용 중...');
         simulateAIAnalysis(updatedAnswers)
@@ -129,9 +129,17 @@ function App() {
         return;
       }
       
-      // API 호출 부분 (현재는 사용하지 않음)
+      // 기본적으로 API 호출 수행
+      console.log('API 결과 분석 사용 중...');
+      console.log('전송되는 answers 객체:', JSON.stringify(updatedAnswers, null, 2));
+      // 각 답변 항목을 개별적으로 로깅
+      Object.entries(updatedAnswers).forEach(([key, value]) => {
+        console.log(`답변 항목: ${key}, 값: ${value}, 타입: ${typeof value}`);
+      });
+      
       apiService.analyzeResults(updatedAnswers, userName)
         .then(data => {
+          console.log('API 응답 결과:', JSON.stringify(data, null, 2));
           const resultData = data.result || data;
           setResult(resultData);
           setLoading(false);

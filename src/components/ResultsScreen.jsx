@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import AIGeneratedQuestion from '../components/AiGeneratedQuestion';
-import { pathLabels } from '../utils/questions';
+import { pathLabels, pathDescriptions } from '../utils/questions';
 import { saveTestResult } from '../utils/testUtils';
 import apiService from '../services/api';
 import authService from '../services/auth';
 
 const ResultsScreen = ({ result, userName, resultId, onRestart, isOfflineMode, onShowStats }) => {
-  const { recommendedPath, scores, details, allPaths } = result;
+  const { recommendedPath, scores } = result;
+  const details = result.details || pathDescriptions[recommendedPath];
+  const allPaths = result.allPaths || pathDescriptions;
   const maxScore = Math.max(...Object.values(scores));
   const [activeTab, setActiveTab] = useState('overview');
   const [isSaved, setIsSaved] = useState(false);
@@ -28,7 +30,8 @@ const ResultsScreen = ({ result, userName, resultId, onRestart, isOfflineMode, o
   };
   
   const shareToSocialMedia = (platform) => {
-    const text = `${userName || '저'}는 개발자 적성 테스트 결과 "${result.title}" 유형입니다! 당신의 개발자 유형은 무엇인가요?`;
+    const title = result.title || details?.title || pathLabels[recommendedPath] || '개발자';
+    const text = `${userName || '저'}는 개발자 적성 테스트 결과 "${title}" 유형입니다! 당신의 개발자 유형은 무엇인가요?`;
     const url = window.location.href;
     
     let shareUrl = '';
@@ -151,7 +154,7 @@ const ResultsScreen = ({ result, userName, resultId, onRestart, isOfflineMode, o
               {userName ? `${userName}님의 개발자 진로 추천 결과` : '개발자 진로 추천 결과'}
             </h1>
             <p className="text-gray-500 text-lg max-w-lg">
-              당신에게 가장 적합한 개발 분야는 <span className="font-bold">{details.title}</span>입니다!
+              당신에게 가장 적합한 개발 분야는 <span className="font-bold">{details?.title || '개발자'}</span>입니다!
             </p>
           </div>
         </div>
