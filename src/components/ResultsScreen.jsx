@@ -1,14 +1,116 @@
 import React, { useState } from 'react';
 import AIGeneratedQuestion from '../components/AiGeneratedQuestion';
 import { pathLabels } from '../utils/questions';
+import { saveTestResult } from '../utils/testUtils';
+import apiService from '../services/api';
+import authService from '../services/auth';
 
-const ResultsScreen = ({ result, userName, onRestart }) => {
+const ResultsScreen = ({ result, userName, resultId, onRestart, isOfflineMode, onShowStats }) => {
   const { recommendedPath, scores, details, allPaths } = result;
   const maxScore = Math.max(...Object.values(scores));
   const [activeTab, setActiveTab] = useState('overview');
+  const [isSaved, setIsSaved] = useState(false);
+  const [showShareOptions, setShowShareOptions] = useState(false);
+  const [stats, setStats] = useState(null);
+  const [loadingStats, setLoadingStats] = useState(false);
+  const isAdmin = authService.isAdmin();
+  const isAuthenticated = authService.isAuthenticated();
+  
+  const handleSaveResult = () => {
+    const savedResult = saveTestResult(userName, result);
+    if (savedResult) {
+      setIsSaved(true);
+    }
+  };
+  
+  const handleShare = () => {
+    setShowShareOptions(!showShareOptions);
+  };
+  
+  const shareToSocialMedia = (platform) => {
+    const text = `${userName || '저'}는 개발자 적성 테스트 결과 "${result.title}" 유형입니다! 당신의 개발자 유형은 무엇인가요?`;
+    const url = window.location.href;
+    
+    let shareUrl = '';
+    
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        break;
+      default:
+        return;
+    }
+    
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareOptions(false);
+  };
+  
+  const getShareLink = () => {
+    if (resultId) {
+      return `${window.location.origin}/results/${resultId}`;
+    } else {
+      return window.location.origin;
+    }
+  };
+  
+  const fetchStats = async () => {
+    if (loadingStats || stats) return;
+    
+    setLoadingStats(true);
+    try {
+      const statsData = await apiService.getStats();
+      setStats(statsData);
+    } catch (error) {
+      console.error('통계 데이터 가져오기 실패:', error);
+    } finally {
+      setLoadingStats(false);
+    }
+  };
+  
+  const renderAdminSection = () => {
+    if (!isAuthenticated) {
+      return null;
+    }
+    
+    return (
+      <div className="mt-8 p-4 bg-indigo-50 rounded-lg">
+        <h3 className="text-lg font-semibold text-indigo-800 mb-3">
+          {isAdmin ? '관리자 옵션' : '사용자 옵션'}
+        </h3>
+        <button
+          onClick={onShowStats}
+          className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 shadow-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+          </svg>
+          통계 대시보드 보기
+        </button>
+      </div>
+    );
+  };
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+      {isOfflineMode && (
+        <div className="max-w-3xl mx-auto mb-6 bg-yellow-50 border border-yellow-200 rounded-md p-4">
+          <div className="flex">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            <p className="text-sm text-yellow-700">
+              오프라인 모드에서 결과가 생성되었습니다. 인터넷 연결 시 더 정확한 결과를 얻을 수 있습니다.
+            </p>
+          </div>
+        </div>
+      )}
+      
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="relative">
           <div className="absolute inset-0 bg-indigo-600 opacity-90" style={{height: '150px'}}>
@@ -45,10 +147,10 @@ const ResultsScreen = ({ result, userName, onRestart }) => {
                 }
               </div>
             </div>
-            <h1 className="text-2xl font-bold text-white mb-1">
+            <h1 className="text-2xl font-bold text-gray-800 mb-1">
               {userName ? `${userName}님의 개발자 진로 추천 결과` : '개발자 진로 추천 결과'}
             </h1>
-            <p className="text-indigo-100 text-lg max-w-lg">
+            <p className="text-gray-500 text-lg max-w-lg">
               당신에게 가장 적합한 개발 분야는 <span className="font-bold">{details.title}</span>입니다!
             </p>
           </div>
@@ -298,6 +400,76 @@ const ResultsScreen = ({ result, userName, onRestart }) => {
           )}
         </div>
       </div>
+      
+      <div className="mt-10 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+        <button
+          onClick={onRestart}
+          className="w-full sm:w-auto py-3 px-6 bg-white border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          aria-label="테스트 다시 시작하기"
+        >
+          테스트 다시 시작하기
+        </button>
+        
+        <button
+          onClick={handleSaveResult}
+          disabled={isSaved}
+          className={`w-full sm:w-auto py-3 px-6 rounded-md shadow-sm text-base font-medium ${
+            isSaved 
+              ? 'bg-green-100 text-green-800 cursor-not-allowed' 
+              : 'bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+          }`}
+          aria-label="결과 저장하기"
+        >
+          {isSaved ? '저장됨' : '결과 저장하기'}
+        </button>
+        
+        <div className="relative">
+          <button
+            onClick={handleShare}
+            className="w-full sm:w-auto py-3 px-6 bg-indigo-100 rounded-md shadow-sm text-base font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            aria-label="결과 공유하기"
+            aria-expanded={showShareOptions}
+            aria-controls="share-options"
+          >
+            결과 공유하기
+          </button>
+          
+          {showShareOptions && (
+            <div 
+              id="share-options"
+              className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10"
+              role="menu"
+              aria-orientation="vertical"
+            >
+              <div className="py-1" role="none">
+                <button
+                  onClick={() => shareToSocialMedia('twitter')}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  role="menuitem"
+                >
+                  Twitter에 공유
+                </button>
+                <button
+                  onClick={() => shareToSocialMedia('facebook')}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  role="menuitem"
+                >
+                  Facebook에 공유
+                </button>
+                <button
+                  onClick={() => shareToSocialMedia('linkedin')}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  role="menuitem"
+                >
+                  LinkedIn에 공유
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      {renderAdminSection()}
     </div>
   );
 };

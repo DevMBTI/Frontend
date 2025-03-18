@@ -107,8 +107,15 @@ export const personalityQuestions = [
         { value: 'backend', label: '서버 시스템과 데이터베이스 설계하기' },
         { value: 'fullstack', label: '전체 시스템을 처음부터 끝까지 구현하기' },
         { value: 'data', label: '데이터를 분석하고 인사이트 도출하기' },
-        { value: 'devops', label: '시스템 배포와 운영 자동화하기' }
-      ]
+        { value: 'devops', label: '시스템 배포와 운영 자동화하기' },
+        { value: 'mobile', label: '모바일 앱을 디자인하고 개발하기' },
+        { value: 'security', label: '시스템 보안과 취약점 분석하기' },
+        { value: 'gamedev', label: '게임 개발 및 사용자 경험 설계하기' },
+        { value: 'embedded', label: '임베디드 시스템 및 하드웨어 프로그래밍하기' },
+        { value: 'ai', label: 'AI 모델 개발 및 머신러닝 알고리즘 구현하기' }
+      ],
+      // 동적 선택지 여부
+      isDynamicOptions: true
     }
   ];
   
@@ -197,6 +204,37 @@ export const personalityQuestions = [
       description: '시스템 운영과 배포 자동화에 관심이 많으신 것 같습니다. 효율적인 개발 환경을 구축하고 지속적인 통합/배포를 관리하는 것을 선호하는 성향이 DevOps에 적합합니다.',
       skills: ['Linux', 'Docker', 'Kubernetes', 'CI/CD', '클라우드 서비스(AWS, Azure, GCP)', '스크립팅'],
       learningPath: 'DevOps 엔지니어가 되기 위해서는 Linux 시스템 관리, 클라우드 서비스, 컨테이너화 기술(Docker, Kubernetes)을 배우는 것이 중요합니다. 또한 CI/CD 파이프라인 구축과 자동화 스크립트 작성 능력도 필요합니다.'
+    },
+    // 새로운 개발자 카테고리
+    mobile: {
+      title: '모바일 앱 개발자',
+      description: '모바일 환경에서 사용자 경험을 중요시하고 앱 개발에 관심이 많으신 것 같습니다. 모바일 환경의 특성을 이해하고 적합한 UI/UX를 설계하는 데 관심을 가진 성향이 모바일 앱 개발에 적합합니다.',
+      skills: ['Swift(iOS)', 'Kotlin(Android)', 'React Native', 'Flutter', '모바일 UI/UX 디자인', 'API 연동'],
+      learningPath: '모바일 앱 개발자가 되기 위해서는 특정 플랫폼(iOS, Android)에 집중하거나 크로스 플랫폼 프레임워크(React Native, Flutter)를 배우는 방법이 있습니다. 모바일 UI/UX 원칙과 API 연동 방법을 익히는 것도 중요합니다.'
+    },
+    security: {
+      title: '보안 엔지니어',
+      description: '시스템과 애플리케이션의 보안에 관심이 많으신 것 같습니다. 취약점을 분석하고 보안 대책을 설계하는 논리적 사고를 선호하는 성향이 보안 엔지니어에 적합합니다.',
+      skills: ['네트워크 보안', '웹 애플리케이션 보안', '암호화', '침투 테스트', '보안 감사', '사고 대응'],
+      learningPath: '보안 엔지니어가 되기 위해서는 네트워크 기초, 운영체제 지식, 암호화 이론을 배워야 합니다. 웹 애플리케이션 보안, 취약점 분석, 침투 테스트 등의 기술을 익히는 것이 중요합니다.'
+    },
+    gamedev: {
+      title: '게임 개발자',
+      description: '인터랙티브한 경험과 창의적인 문제 해결에 관심이 많으신 것 같습니다. 시각적 요소와 논리적 구조를 균형 있게 다루는 능력을 가진 성향이 게임 개발에 적합합니다.',
+      skills: ['Unity', 'Unreal Engine', 'C#', 'C++', '게임 디자인', '3D 모델링 기초'],
+      learningPath: '게임 개발자가 되기 위해서는 게임 엔진(Unity, Unreal)을 배우고 관련 프로그래밍 언어(C#, C++)를 익히는 것이 중요합니다. 게임 디자인 원칙과 기본적인 3D 모델링, 애니메이션 지식도 도움이 됩니다.'
+    },
+    embedded: {
+      title: '임베디드 시스템 개발자',
+      description: '하드웨어와 소프트웨어의 상호작용에 관심이 많으신 것 같습니다. 제한된 자원을 효율적으로 활용하는 최적화 능력과 저수준 시스템에 관심이 있는 성향이 임베디드 개발에 적합합니다.',
+      skills: ['C/C++', '마이크로컨트롤러', 'RTOS', '하드웨어 인터페이스', '전자공학 기초'],
+      learningPath: '임베디드 시스템 개발자가 되기 위해서는 C/C++와 같은 저수준 언어와 마이크로컨트롤러 프로그래밍을 배워야 합니다. 기본적인 전자공학 지식과 하드웨어 인터페이스 방법도 익혀야 합니다.'
+    },
+    ai: {
+      title: 'AI/ML 엔지니어',
+      description: '인공지능과 머신러닝 시스템 개발에 관심이 많으신 것 같습니다. 데이터 기반의 접근과 복잡한 알고리즘을 이해하고 적용하는 능력을 가진 성향이 AI/ML 분야에 적합합니다.',
+      skills: ['Python', 'TensorFlow/PyTorch', '수학/통계', '데이터 전처리', '신경망 아키텍처', '모델 배포'],
+      learningPath: 'AI/ML 엔지니어가 되기 위해서는 Python과 머신러닝 프레임워크(TensorFlow, PyTorch)를 배워야 합니다. 선형대수, 미적분, 통계와 같은 수학적 기초와 데이터 전처리, 모델 평가 방법도 중요합니다.'
     }
   };
   
@@ -206,5 +244,10 @@ export const personalityQuestions = [
     backend: '백엔드',
     fullstack: '풀스택',
     data: '데이터',
-    devops: 'DevOps'
+    devops: 'DevOps',
+    mobile: '모바일 앱',
+    security: '보안',
+    gamedev: '게임 개발',
+    embedded: '임베디드',
+    ai: 'AI/ML'
   };
