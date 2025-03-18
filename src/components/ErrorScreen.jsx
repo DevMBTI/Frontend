@@ -2,8 +2,19 @@ import React from 'react';
 
 const ErrorScreen = ({ message, onRetry, onRestart, onOfflineMode }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 flex flex-col items-center justify-center absolute inset-0">
+      {/* 배경 애니메이션 요소 */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-1/3 left-1/3 w-[150vw] h-[150vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-1/4 right-1/3 w-[150vw] h-[150vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute -bottom-1/3 left-1/4 w-[150vw] h-[150vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+      </div>
+      
+      {/* 추가 배경 레이어 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 z-0"></div>
+      
+      <div className="max-w-md w-full bg-white/90 backdrop-blur-md rounded-lg shadow-xl border border-white/70 overflow-hidden relative z-10">
         <div className="bg-red-600 p-6">
           <div className="flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">

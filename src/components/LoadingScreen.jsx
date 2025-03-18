@@ -2,15 +2,19 @@ import React from 'react';
 
 const LoadingScreen = ({ message = "로딩 중..." }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 relative overflow-hidden">
-      {/* 배경 효과 */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-1/3 left-1/3 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 right-1/3 w-60 h-60 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 flex flex-col items-center justify-center absolute inset-0">
+      {/* 배경 애니메이션 요소 */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-1/3 left-1/3 w-[150vw] h-[150vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-1/4 right-1/3 w-[150vw] h-[150vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute -bottom-1/3 left-1/4 w-[150vw] h-[150vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
       </div>
       
-      <div className="relative z-10 bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-xl border border-indigo-100 flex flex-col items-center">
+      {/* 추가 배경 레이어 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 z-0"></div>
+      
+      <div className="relative z-10 bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-xl border border-white/70 flex flex-col items-center">
         <div className="w-24 h-24 relative mb-6">
           {/* 회전 애니메이션 */}
           <div className="absolute inset-0 rounded-full border-t-4 border-indigo-600 animate-spin"></div>

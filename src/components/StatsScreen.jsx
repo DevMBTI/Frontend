@@ -173,8 +173,19 @@ const StatsScreen = ({ onBack }) => {
   
   if (loading) {
     return (
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-        <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <div className="h-screen w-screen overflow-auto bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 absolute inset-0">
+        {/* 배경 애니메이션 요소 */}
+        <div className="fixed inset-0 z-0 overflow-hidden">
+          <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div className="absolute top-1/3 left-1/3 w-[150vw] h-[150vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-1/4 right-1/3 w-[150vw] h-[150vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+          <div className="absolute -bottom-1/3 left-1/4 w-[150vw] h-[150vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+        </div>
+        
+        {/* 추가 배경 레이어 */}
+        <div className="fixed inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 z-0"></div>
+        
+        <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10">
           {renderHeader()}
           
           <div className="flex flex-col items-center justify-center min-h-[400px]">
@@ -188,8 +199,19 @@ const StatsScreen = ({ onBack }) => {
   
   if (error) {
     return (
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-        <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <div className="h-screen w-screen overflow-auto bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 absolute inset-0">
+        {/* 배경 애니메이션 요소 */}
+        <div className="fixed inset-0 z-0 overflow-hidden">
+          <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div className="absolute top-1/3 left-1/3 w-[150vw] h-[150vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-1/4 right-1/3 w-[150vw] h-[150vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+          <div className="absolute -bottom-1/3 left-1/4 w-[150vw] h-[150vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+        </div>
+        
+        {/* 추가 배경 레이어 */}
+        <div className="fixed inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 z-0"></div>
+        
+        <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10">
           {renderHeader()}
           
           <div className="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-lg shadow-sm mb-6">
@@ -399,8 +421,19 @@ const StatsScreen = ({ onBack }) => {
   );
   
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-      <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <div className="h-screen w-screen overflow-auto bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 absolute inset-0">
+      {/* 배경 애니메이션 요소 */}
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-[150vw] h-[150vw] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-1/3 left-1/3 w-[150vw] h-[150vw] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-1/4 right-1/3 w-[150vw] h-[150vw] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute -bottom-1/3 left-1/4 w-[150vw] h-[150vw] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+      </div>
+      
+      {/* 추가 배경 레이어 */}
+      <div className="fixed inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 z-0"></div>
+      
+      <div className="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10">
         {renderHeader()}
         
         <div className="mb-4 flex items-center">
@@ -412,7 +445,7 @@ const StatsScreen = ({ onBack }) => {
         {/* 기간 선택 및 요약 정보 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {/* 기간 선택 */}
-          <div className="bg-white shadow rounded-lg p-5 border border-gray-100">
+          <div className="bg-white/90 backdrop-blur-md shadow-xl rounded-lg p-5 border border-white/70">
             <h3 className="text-lg font-medium text-gray-800 mb-3">조회 기간 설정</h3>
             <select 
               value={timePeriod} 
@@ -426,7 +459,7 @@ const StatsScreen = ({ onBack }) => {
           </div>
           
           {/* 총 참여자 */}
-          <div className="bg-white shadow rounded-lg p-5 border border-gray-100">
+          <div className="bg-white/90 backdrop-blur-md shadow-xl rounded-lg p-5 border border-white/70">
             <h3 className="text-sm font-medium text-gray-500 mb-1">총 테스트 참여자</h3>
             <div className="flex items-baseline">
               <span className="text-3xl font-extrabold text-gray-900">{stats.totalCount}</span>
@@ -441,7 +474,7 @@ const StatsScreen = ({ onBack }) => {
           </div>
           
           {/* 선택 기간 참여자 */}
-          <div className="bg-white shadow rounded-lg p-5 border border-gray-100">
+          <div className="bg-white/90 backdrop-blur-md shadow-xl rounded-lg p-5 border border-white/70">
             <h3 className="text-sm font-medium text-gray-500 mb-1">선택 기간 참여자</h3>
             <div className="flex items-baseline">
               <span className="text-3xl font-extrabold text-gray-900">{stats.count}</span>
